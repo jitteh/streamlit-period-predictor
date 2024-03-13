@@ -10,7 +10,7 @@ st.write("""
 
 # Height, LFRS, Material, ; Geometry, Foundation Depth, Foundation Type, Floor above ground, Floors below ground
 
-model_path = '0313-crude-clone-opt'
+model_path = '.'
 predictor = TabularPredictor.load(model_path).predict
 
 col1, col2 = st.columns(2)
