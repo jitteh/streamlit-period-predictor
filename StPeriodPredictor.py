@@ -10,7 +10,7 @@ st.write("""
 
 # Height, LFRS, Material, ; Geometry, Foundation Depth, Foundation Type, Floor above ground, Floors below ground
 
-model_path = '../model/0313-crude-clone-opt'
+model_path = '0313-crude-clone-opt'
 predictor = TabularPredictor.load(model_path).predict
 
 col1, col2 = st.columns(2)
@@ -45,13 +45,9 @@ def show_result():
         'name':'','L':None, 'W':None,  'Floors1':None,'Floors2':None, 'func1':'', 'func2':'', 
         'plan1':'', 'plan2':'', 'FoundDepth':None,'FoundType':'', 'SiteType':''}
     input_data = {cols[i]: vals[i] for i in range(len(cols))}
-    print(input_data)
     df = pd.DataFrame(input_data, index=[0])
     result = predictor(df)
     st.dataframe(result)
-    print('Results: ', result)
-    print('Required: ', height, loc, mat, lrfs)
-    print('Optional: ', floor1,floor2, found_depth, geom, found_type)
 
 def batch_results():
     print(data_file)
@@ -61,7 +57,6 @@ def batch_results():
     res_df = predictor(test_df)
     st.caption('Prediction results')
     st.dataframe(res_df)
-    print(test_df.shape, res_df.shape)
 
 if st.button('Predict'):
     show_result()
